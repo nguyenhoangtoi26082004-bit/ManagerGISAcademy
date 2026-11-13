@@ -355,9 +355,39 @@ namespace ManagerGISAcademy.GUI.Forms
                 try
                 {
                     string p = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "Images", "logohocvien.png");
-                    if (File.Exists(p)) using (Image a = Image.FromFile(p)) logo = new Bitmap(a);
+                    if (File.Exists(p)) using (Bitmap a = new Bitmap(p)) logo = CatHuyHieu(a);
                 }
                 catch { logo = null; }
+            }
+
+            /// <summary>
+            /// Anh goc la hinh chu nhat nen trang, huy hieu tron o giua.
+            /// Tim khung bao phan khong phai nen trang, cat thanh hinh VUONG
+            /// can giua de ve vao khung tron khong bi meo / lech.
+            /// </summary>
+            private static Bitmap CatHuyHieu(Bitmap a)
+            {
+                int x0 = a.Width, y0 = a.Height, x1 = -1, y1 = -1;
+                for (int y = 0; y < a.Height; y += 2)
+                    for (int x = 0; x < a.Width; x += 2)
+                    {
+                        Color c = a.GetPixel(x, y);
+                        if (c.A < 40 || (c.R > 235 && c.G > 235 && c.B > 235)) continue;
+                        if (x < x0) x0 = x; if (x > x1) x1 = x;
+                        if (y < y0) y0 = y; if (y > y1) y1 = y;
+                    }
+                if (x1 < 0) return new Bitmap(a);
+                int canh = Math.Max(x1 - x0, y1 - y0) + 4;
+                int cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+                Rectangle nguon = new Rectangle(cx - canh / 2, cy - canh / 2, canh, canh);
+                Bitmap kq = new Bitmap(canh, canh);
+                using (Graphics g = Graphics.FromImage(kq))
+                {
+                    g.Clear(Color.White);
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(a, new Rectangle(0, 0, canh, canh), nguon, GraphicsUnit.Pixel);
+                }
+                return kq;
             }
 
             protected override void Dispose(bool disposing) { if (disposing && logo != null) logo.Dispose(); base.Dispose(disposing); }
@@ -382,8 +412,23 @@ namespace ManagerGISAcademy.GUI.Forms
                 int cx = Width / 2;
                 if (logo != null)
                 {
-                    using (SolidBrush nen = new SolidBrush(Color.FromArgb(240, 255, 255, 255))) g.FillEllipse(nen, cx - 54, 48, 108, 108);
-                    g.DrawImage(logo, new Rectangle(cx - 46, 56, 92, 92));
+                    // Vong sang ngoai + nen trang tron, huy hieu ve ben trong (cat tron), dung tam.
+                    const int d = 112, le = 5;
+                    RectangleF vong = new RectangleF(cx - d / 2f, 46, d, d);
+                    using (SolidBrush hao = new SolidBrush(Color.FromArgb(45, 255, 255, 255)))
+                        g.FillEllipse(hao, vong.X - 6, vong.Y - 6, vong.Width + 12, vong.Height + 12);
+                    using (SolidBrush nen = new SolidBrush(Color.White)) g.FillEllipse(nen, vong);
+                    RectangleF anh = new RectangleF(vong.X + le, vong.Y + le, d - 2 * le, d - 2 * le);
+                    using (GraphicsPath tron = new GraphicsPath())
+                    {
+                        tron.AddEllipse(anh);
+                        GraphicsState st = g.Save();
+                        g.SetClip(tron);
+                        g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        g.DrawImage(logo, anh);
+                        g.Restore(st);
+                    }
+                    using (Pen vien = new Pen(Color.FromArgb(230, 249, 81), 2f)) g.DrawEllipse(vien, vong);
                 }
                 using (Font f1 = new Font("Segoe UI", 13.5F, FontStyle.Bold))
                 using (Font f2 = new Font("Segoe UI", 9.5F))
