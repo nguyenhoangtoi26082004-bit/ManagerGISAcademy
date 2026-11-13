@@ -1,0 +1,1512 @@
+{
+  "type": "FeatureCollection",
+  "name": "MilitaryUnits_Hanoi_EPSG4326",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.8402,
+          21.0335
+        ]
+      },
+      "properties": {
+        "id": "DV_BQP_01",
+        "code": "BQP-HQ",
+        "name": "Sở Chỉ huy Bộ Quốc phòng",
+        "shortName": "Trụ sở Bộ Quốc phòng",
+        "unitType": "Cơ quan Bộ Quốc phòng",
+        "branch": "Lục quân",
+        "parentUnit": "Quân ủy Trung ương - Bộ Quốc phòng",
+        "district": "Quận Ba Đình",
+        "ward": "Điện Biên",
+        "address": "Số 7 đường Nguyễn Tri Phương, P. Điện Biên, Q. Ba Đình, Hà Nội",
+        "x_vn2000": 587303.83,
+        "y_vn2000": 2326084.94,
+        "commander": "Đại tướng Phan Văn Giang - Bộ trưởng",
+        "phone": "069.533.111",
+        "securityLevel": "Tuyệt mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Trung ương chỉ đạo toàn quân",
+        "establishedYear": 1944
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.7845,
+          21.0481
+        ]
+      },
+      "properties": {
+        "id": "DV_MTA_01",
+        "code": "HV-KTQS",
+        "name": "Học viện Kỹ thuật Quân sự (MTA)",
+        "shortName": "HV Kỹ thuật Quân sự",
+        "unitType": "Học viện - Nhà trường",
+        "branch": "Tổng cục Hậu cần - Kỹ thuật",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Quận Bắc Từ Liêm",
+        "ward": "Cổ Nhuế 1",
+        "address": "Số 236 đường Hoàng Quốc Việt, P. Cổ Nhuế 1, Q. Bắc Từ Liêm, Hà Nội",
+        "x_vn2000": 581507.91,
+        "y_vn2000": 2327671.43,
+        "commander": "Thiếu tướng Lê Minh Thái - Giám đốc",
+        "phone": "069.515.200",
+        "securityLevel": "Tối mật",
+        "readinessStatus": "Huấn luyện - Đào tạo",
+        "personnelScale": "Khoảng 12.000 cán bộ, giảng viên, học viên",
+        "establishedYear": 1966
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.7745,
+          20.9712
+        ]
+      },
+      "properties": {
+        "id": "DV_BTL_TDO",
+        "code": "BTL-TDO",
+        "name": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "shortName": "BTL Thủ đô Hà Nội",
+        "unitType": "Bộ Tư lệnh",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Quận Hà Đông",
+        "ward": "Quang Trung",
+        "address": "Số 16 phố Quang Trung, P. Quang Trung, Q. Hà Đông, Hà Nội",
+        "x_vn2000": 580510.13,
+        "y_vn2000": 2319155.03,
+        "commander": "Trung tướng Nguyễn Quốc Duyệt - Tư lệnh",
+        "phone": "069.576.102",
+        "securityLevel": "Tối mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Toàn lực lượng vũ trang Thủ đô",
+        "establishedYear": 1946
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.8278,
+          20.9998
+        ]
+      },
+      "properties": {
+        "id": "DV_PKKQ_HQ",
+        "code": "QC-PKKQ",
+        "name": "Quân chủng Phòng không - Không quân",
+        "shortName": "QC Phòng không - Không quân",
+        "unitType": "Quân chủng",
+        "branch": "Phòng không - Không quân",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Quận Thanh Xuân",
+        "ward": "Khương Mai",
+        "address": "Số 171 đường Trường Chinh, P. Khương Mai, Q. Thanh Xuân, Hà Nội",
+        "x_vn2000": 586034.63,
+        "y_vn2000": 2322348.24,
+        "commander": "Trung tướng Nguyễn Văn Hiền - Tư lệnh",
+        "phone": "069.565.113",
+        "securityLevel": "Tuyệt mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Chỉ huy toàn lực lượng PK-KQ quốc gia",
+        "establishedYear": 1963
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.7878,
+          21.0215
+        ]
+      },
+      "properties": {
+        "id": "DV_SD_361",
+        "code": "SD-PK-361",
+        "name": "Sư đoàn Phòng không 361 (Đoàn Phòng không Hà Nội)",
+        "shortName": "Sư đoàn PK 361",
+        "unitType": "Sư đoàn",
+        "branch": "Phòng không - Không quân",
+        "parentUnit": "Quân chủng Phòng không - Không quân",
+        "district": "Quận Cầu Giấy",
+        "ward": "Yên Hòa",
+        "address": "Đường Dương Đình Nghệ, P. Yên Hòa, Q. Cầu Giấy, Hà Nội",
+        "x_vn2000": 581865.32,
+        "y_vn2000": 2324729.01,
+        "commander": "Đại tá Trương Mạnh Phương - Sư đoàn trưởng",
+        "phone": "024.3784.5512",
+        "securityLevel": "Tuyệt mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Sư đoàn chiến đấu đủ quân (~3.500 quân)",
+        "establishedYear": 1965
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.8315,
+          20.9465
+        ]
+      },
+      "properties": {
+        "id": "DV_SD_301",
+        "code": "SD-BB-301",
+        "name": "Sư đoàn Bộ binh 301",
+        "shortName": "Sư đoàn BB 301",
+        "unitType": "Sư đoàn",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Thanh Trì",
+        "ward": "Tam Hiệp",
+        "address": "Xã Tam Hiệp, Huyện Thanh Trì, Hà Nội",
+        "x_vn2000": 586449.84,
+        "y_vn2000": 2316450.93,
+        "commander": "Đại tá Trần Hữu Thắng - Sư đoàn trưởng",
+        "phone": "024.3861.8824",
+        "securityLevel": "Tối mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Sư đoàn bộ binh cơ giới cơ động (~4.200 quân)",
+        "establishedYear": 1979
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.8012,
+          21.0456
+        ]
+      },
+      "properties": {
+        "id": "DV_HV_QP",
+        "code": "HV-QP",
+        "name": "Học viện Quốc phòng",
+        "shortName": "HV Quốc phòng",
+        "unitType": "Học viện - Nhà trường",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Quận Cầu Giấy",
+        "ward": "Nghĩa Đô",
+        "address": "Số 93 đường Hoàng Quốc Việt, P. Nghĩa Đô, Q. Cầu Giấy, Hà Nội",
+        "x_vn2000": 583244.48,
+        "y_vn2000": 2327403.35,
+        "commander": "Thượng tướng Trần Việt Khoa - Giám đốc",
+        "phone": "069.553.400",
+        "securityLevel": "Tối mật",
+        "readinessStatus": "Huấn luyện - Đào tạo",
+        "personnelScale": "Trung tâm đào tạo tướng lĩnh và cán bộ cấp chiến lược",
+        "establishedYear": 1976
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.7865,
+          21.0298
+        ]
+      },
+      "properties": {
+        "id": "DV_TC_CYBER",
+        "code": "BTL-86",
+        "name": "Bộ Tư lệnh Tác chiến Không gian mạng (Bộ Tư lệnh 86)",
+        "shortName": "Bộ Tư lệnh 86",
+        "unitType": "Bộ Tư lệnh",
+        "branch": "Tác chiến Không gian mạng",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Quận Cầu Giấy",
+        "ward": "Dịch Vọng Hậu",
+        "address": "Số 2 phố Tôn Thất Thuyết, P. Dịch Vọng Hậu, Q. Cầu Giấy, Hà Nội",
+        "x_vn2000": 581725.69,
+        "y_vn2000": 2325646.99,
+        "commander": "Thiếu tướng Vũ Hữu Hanh - Tư lệnh",
+        "phone": "069.599.186",
+        "securityLevel": "Tuyệt mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Lực lượng chuyên trách tinh nhuệ tác chiến mạng",
+        "establishedYear": 2018
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.852,
+          20.915
+        ]
+      },
+      "properties": {
+        "id": "DV_BC_DACCONG",
+        "code": "BC-DC",
+        "name": "Binh chủng Đặc công",
+        "shortName": "BTL Binh chủng Đặc công",
+        "unitType": "Binh chủng",
+        "branch": "Binh chủng Đặc công",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Huyện Thanh Trì",
+        "ward": "Đông Mỹ",
+        "address": "Xã Đông Mỹ, Huyện Thanh Trì, Hà Nội",
+        "x_vn2000": 588599.83,
+        "y_vn2000": 2312975.68,
+        "commander": "Thiếu tướng Hoàng Minh Sơn - Tư lệnh",
+        "phone": "069.588.312",
+        "securityLevel": "Tuyệt mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Binh chủng chiến đấu đặc biệt",
+        "establishedYear": 1967
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.8142,
+          21.0382
+        ]
+      },
+      "properties": {
+        "id": "DV_BC_CONGBINH",
+        "code": "BC-CB",
+        "name": "Binh chủng Công binh",
+        "shortName": "BTL Binh chủng Công binh",
+        "unitType": "Binh chủng",
+        "branch": "Binh chủng Công binh",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Quận Ba Đình",
+        "ward": "Kim Mã",
+        "address": "Số 463 đường Đội Cấn, P. Kim Mã, Q. Ba Đình, Hà Nội",
+        "x_vn2000": 584599.42,
+        "y_vn2000": 2326591.15,
+        "commander": "Thiếu tướng Đinh Ngọc Tường - Tư lệnh",
+        "phone": "069.571.215",
+        "securityLevel": "Tối mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Chỉ đạo ngành công binh toàn quân",
+        "establishedYear": 1946
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.5012,
+          21.1395
+        ]
+      },
+      "properties": {
+        "id": "DV_BC_PHAOBINH",
+        "code": "BC-PB",
+        "name": "Binh chủng Pháo binh",
+        "shortName": "BTL Binh chủng Pháo binh",
+        "unitType": "Binh chủng",
+        "branch": "Binh chủng Pháo binh",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Thị xã Sơn Tây",
+        "ward": "Trung Hưng",
+        "address": "Đường La Thành, P. Trung Hưng, TX. Sơn Tây, Hà Nội",
+        "x_vn2000": 552041.06,
+        "y_vn2000": 2337668.7,
+        "commander": "Thiếu tướng Nguyễn Hồng Phong - Tư lệnh",
+        "phone": "069.591.220",
+        "securityLevel": "Tối mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Hỏa lực mặt đất chủ yếu cấp chiến dịch",
+        "establishedYear": 1946
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.741,
+          21.036
+        ]
+      },
+      "properties": {
+        "id": "DV_BC_TTG",
+        "code": "BC-TTG",
+        "name": "Binh chủng Tăng Thiết Giáp",
+        "shortName": "BTL Tăng Thiết Giáp",
+        "unitType": "Binh chủng",
+        "branch": "Binh chủng Tăng Thiết Giáp",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Quận Nam Từ Liêm",
+        "ward": "Phương Canh",
+        "address": "Đường Xuân Phương, P. Phương Canh, Q. Nam Từ Liêm, Hà Nội",
+        "x_vn2000": 576994.37,
+        "y_vn2000": 2326310.59,
+        "commander": "Thiếu tướng Đỗ Đình Thanh - Tư lệnh",
+        "phone": "069.574.110",
+        "securityLevel": "Tối mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Lực lượng đột kích chủ yếu trên bộ",
+        "establishedYear": 1959
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.792,
+          21.035
+        ]
+      },
+      "properties": {
+        "id": "DV_BC_THONGTIN",
+        "code": "BC-TTLL",
+        "name": "Binh chủng Thông tin Liên lạc",
+        "shortName": "BTL Thông tin Liên lạc",
+        "unitType": "Binh chủng",
+        "branch": "Binh chủng Thông tin liên lạc",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Quận Cầu Giấy",
+        "ward": "Dịch Vọng",
+        "address": "Số 1 đường Trần Thái Tông, P. Dịch Vọng, Q. Cầu Giấy, Hà Nội",
+        "x_vn2000": 582294.38,
+        "y_vn2000": 2326225.36,
+        "commander": "Thiếu tướng Khúc Đăng Hưng - Tư lệnh",
+        "phone": "069.582.115",
+        "securityLevel": "Tuyệt mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Bảo đảm mạch máu liên lạc chỉ huy toàn quân",
+        "establishedYear": 1945
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.512,
+          21.127
+        ]
+      },
+      "properties": {
+        "id": "DV_BC_HOAHOC",
+        "code": "BC-HH",
+        "name": "Binh chủng Hóa học",
+        "shortName": "BTL Binh chủng Hóa học",
+        "unitType": "Binh chủng",
+        "branch": "Binh chủng Hóa học",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Thị xã Sơn Tây",
+        "ward": "Sơn Lộc",
+        "address": "Phố Chùa Thông, P. Sơn Lộc, TX. Sơn Tây, Hà Nội",
+        "x_vn2000": 553166.94,
+        "y_vn2000": 2336288.81,
+        "commander": "Thiếu tướng Hà Văn Cử - Tư lệnh",
+        "phone": "069.585.201",
+        "securityLevel": "Tối mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Lực lượng chuyên môn kỹ thuật phòng hóa",
+        "establishedYear": 1958
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.8347,
+          21.0368
+        ]
+      },
+      "properties": {
+        "id": "DV_BTL_LANG",
+        "code": "BTL-LANG",
+        "name": "Bộ Tư lệnh Bảo vệ Lăng Chủ tịch Hồ Chí Minh",
+        "shortName": "BTL Bảo vệ Lăng",
+        "unitType": "Bộ Tư lệnh",
+        "branch": "Bộ Tư lệnh Lăng",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Quận Ba Đình",
+        "ward": "Điện Biên",
+        "address": "Số 1 phố Ông Ích Khiêm, P. Điện Biên, Q. Ba Đình, Hà Nội",
+        "x_vn2000": 586730.39,
+        "y_vn2000": 2326447.19,
+        "commander": "Thiếu tướng Đinh Quốc Hùng - Chính ủy kiêm Quyền Tư lệnh",
+        "phone": "069.534.120",
+        "securityLevel": "Tuyệt mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Đơn vị nghi lễ và bảo vệ đặc biệt",
+        "establishedYear": 1975
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.8612,
+          21.0185
+        ]
+      },
+      "properties": {
+        "id": "DV_BQP_108",
+        "code": "BV-108",
+        "name": "Bệnh viện Trung ương Quân đội 108",
+        "shortName": "Bệnh viện TWQĐ 108",
+        "unitType": "Bệnh viện Quân y",
+        "branch": "Quân y",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Quận Hai Bà Trưng",
+        "ward": "Bạch Đằng",
+        "address": "Số 1 đường Trần Hưng Đạo, P. Bạch Đằng, Q. Hai Bà Trưng, Hà Nội",
+        "x_vn2000": 589494.98,
+        "y_vn2000": 2324436.34,
+        "commander": "Thiếu tướng PGS.TS Lê Hữu Song - Giám đốc",
+        "phone": "024.6278.4108",
+        "securityLevel": "Nội bộ",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Bệnh viện đa khoa, chuyên khoa sâu hạng đặc biệt (~2.500 giường)",
+        "establishedYear": 1951
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.7925,
+          20.9632
+        ]
+      },
+      "properties": {
+        "id": "DV_HV_QUANY",
+        "code": "HV-QY",
+        "name": "Học viện Quân y (Bệnh viện Quân y 103)",
+        "shortName": "Học viện Quân y - 103",
+        "unitType": "Học viện - Nhà trường",
+        "branch": "Quân y",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Quận Hà Đông",
+        "ward": "Phúc La",
+        "address": "Số 261 đường Phùng Hưng, P. Phúc La, Q. Hà Đông, Hà Nội",
+        "x_vn2000": 582385.72,
+        "y_vn2000": 2318278.74,
+        "commander": "Trung tướng PGS.TS Nguyễn Xuân Kiên - Giám đốc",
+        "phone": "069.566.200",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Đào tạo bác sĩ quân y và khám chữa bệnh (~1.500 giường)",
+        "establishedYear": 1949
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.518,
+          21.078
+        ]
+      },
+      "properties": {
+        "id": "DV_SQ_LUCQUAN",
+        "code": "TSQ-LQ1",
+        "name": "Trường Sĩ quan Lục quân 1 (Trường Đại học Trần Quốc Tuấn)",
+        "shortName": "Trường Sĩ quan Lục quân 1",
+        "unitType": "Học viện - Nhà trường",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Thị xã Sơn Tây",
+        "ward": "Cổ Đông",
+        "address": "Xã Cổ Đông, TX. Sơn Tây, Hà Nội",
+        "x_vn2000": 553807.65,
+        "y_vn2000": 2330867.63,
+        "commander": "Trung tướng Đỗ Viết Toản - Hiệu trưởng",
+        "phone": "024.3383.9102",
+        "securityLevel": "Tối mật",
+        "readinessStatus": "Huấn luyện - Đào tạo",
+        "personnelScale": "Đào tạo hàng nghìn sĩ quan chỉ huy phân đội binh chủng hợp thành",
+        "establishedYear": 1945
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.534,
+          21.0385
+        ]
+      },
+      "properties": {
+        "id": "DV_SANBAY_HOALAC",
+        "code": "SB-HOALAC",
+        "name": "Trung đoàn Không quân 916 (Sân bay Hòa Lạc)",
+        "shortName": "Trung đoàn KQ 916 (Hòa Lạc)",
+        "unitType": "Trung đoàn",
+        "branch": "Phòng không - Không quân",
+        "parentUnit": "Sư đoàn Không quân 371 - Quân chủng PK-KQ",
+        "district": "Huyện Thạch Thất",
+        "ward": "Thạch Hòa",
+        "address": "Khu công nghệ cao Hòa Lạc, Xã Thạch Hòa, Huyện Thạch Thất, Hà Nội",
+        "x_vn2000": 555484.34,
+        "y_vn2000": 2326501.37,
+        "commander": "Đại tá Nguyễn Đức Khiêm - Trung đoàn trưởng",
+        "phone": "024.3384.6114",
+        "securityLevel": "Tuyệt mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Trung đoàn không quân trực thăng chiến đấu (~800 quân)",
+        "establishedYear": 1975
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.8295,
+          21.0392
+        ]
+      },
+      "properties": {
+        "id": "DV_LU_144",
+        "code": "LU-144",
+        "name": "Lữ đoàn 144 (Bộ Tổng Tham mưu)",
+        "shortName": "Lữ đoàn 144 BTTM",
+        "unitType": "Lữ đoàn",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tổng Tham mưu - Bộ Quốc phòng",
+        "district": "Quận Ba Đình",
+        "ward": "Ngọc Hà",
+        "address": "Số 19 đường Hoàng Hoa Thám, P. Ngọc Hà, Q. Ba Đình, Hà Nội",
+        "x_vn2000": 586188.67,
+        "y_vn2000": 2326710.01,
+        "commander": "Đại tá Nguyễn Văn Dũng - Lữ đoàn trưởng",
+        "phone": "069.532.144",
+        "securityLevel": "Tuyệt mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Lực lượng vệ binh cận vệ tinh nhuệ (~2.200 quân)",
+        "establishedYear": 1951
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.8166,
+          21.0346
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_BADINH",
+        "code": "BCH-BD",
+        "name": "Ban Chỉ huy Quân sự Quận Ba Đình",
+        "shortName": "Ban CHQS Q. Ba Đình",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Quận Ba Đình",
+        "ward": "Cống Vị",
+        "address": "Số 16A phố Liễu Giai, P. Cống Vị, Q. Ba Đình, Hà Nội",
+        "x_vn2000": 584850.84,
+        "y_vn2000": 2326193.97,
+        "commander": "Thượng tá Nguyễn Tiến Dũng - Chỉ huy trưởng",
+        "phone": "024.3832.5512",
+        "securityLevel": "Tối mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Cơ quan quân sự địa phương nòng cốt",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.8565,
+          21.0235
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_HOANKIEM",
+        "code": "BCH-HK",
+        "name": "Ban Chỉ huy Quân sự Quận Hoàn Kiếm",
+        "shortName": "Ban CHQS Q. Hoàn Kiếm",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Quận Hoàn Kiếm",
+        "ward": "Phan Chu Trinh",
+        "address": "Số 11 phố Phan Chu Trinh, P. Phan Chu Trinh, Q. Hoàn Kiếm, Hà Nội",
+        "x_vn2000": 589003.57,
+        "y_vn2000": 2324987.12,
+        "commander": "Thượng tá Nguyễn Đình Thi - Chỉ huy trưởng",
+        "phone": "024.3825.4310",
+        "securityLevel": "Tối mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Cơ quan quân sự địa phương trung tâm",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.819,
+          21.0075
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_DONGDA",
+        "code": "BCH-DD",
+        "name": "Ban Chỉ huy Quân sự Quận Đống Đa",
+        "shortName": "Ban CHQS Q. Đống Đa",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Quận Đống Đa",
+        "ward": "Ngã Tư Sở",
+        "address": "Số 285 phố Tây Sơn, P. Ngã Tư Sở, Q. Đống Đa, Hà Nội",
+        "x_vn2000": 585115.61,
+        "y_vn2000": 2323195.78,
+        "commander": "Thượng tá Lê Trọng Lưu - Chỉ huy trưởng",
+        "phone": "024.3853.2140",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1961
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.7915,
+          21.0365
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_CAUGIAY",
+        "code": "BCH-CG",
+        "name": "Ban Chỉ huy Quân sự Quận Cầu Giấy",
+        "shortName": "Ban CHQS Q. Cầu Giấy",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Quận Cầu Giấy",
+        "ward": "Dịch Vọng Hậu",
+        "address": "Số 26 phố Nguyễn Phong Sắc, P. Dịch Vọng Hậu, Q. Cầu Giấy, Hà Nội",
+        "x_vn2000": 582241.6,
+        "y_vn2000": 2326391.12,
+        "commander": "Thượng tá Nguyễn Văn Tuấn - Chỉ huy trưởng",
+        "phone": "024.3756.4020",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1997
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.7485,
+          21.0665
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_BACTULIEM",
+        "code": "BCH-BTL",
+        "name": "Ban Chỉ huy Quân sự Quận Bắc Từ Liêm",
+        "shortName": "Ban CHQS Q. Bắc Từ Liêm",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Quận Bắc Từ Liêm",
+        "ward": "Minh Khai",
+        "address": "Khu liên cơ quan, P. Minh Khai, Q. Bắc Từ Liêm, Hà Nội",
+        "x_vn2000": 577757.86,
+        "y_vn2000": 2329689.98,
+        "commander": "Thượng tá Trần Xuân Dũng - Chỉ huy trưởng",
+        "phone": "024.3224.2389",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 2014
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.761,
+          21.0375
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_NAMTULIEM",
+        "code": "BCH-NTL",
+        "name": "Ban Chỉ huy Quân sự Quận Nam Từ Liêm",
+        "shortName": "Ban CHQS Q. Nam Từ Liêm",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Quận Nam Từ Liêm",
+        "ward": "Cầu Diễn",
+        "address": "Đường Liên Cơ, P. Cầu Diễn, Q. Nam Từ Liêm, Hà Nội",
+        "x_vn2000": 579071.79,
+        "y_vn2000": 2326486.39,
+        "commander": "Thượng tá Lê Anh Dũng - Chỉ huy trưởng",
+        "phone": "024.3837.0421",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 2014
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.772,
+          20.9725
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_HADONG",
+        "code": "BCH-HD",
+        "name": "Ban Chỉ huy Quân sự Quận Hà Đông",
+        "shortName": "Ban CHQS Q. Hà Đông",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Quận Hà Đông",
+        "ward": "Quang Trung",
+        "address": "Số 16 phố Quang Trung, P. Quang Trung, Q. Hà Đông, Hà Nội",
+        "x_vn2000": 580249.55,
+        "y_vn2000": 2319297.66,
+        "commander": "Thượng tá Nguyễn Trọng Thắng - Chỉ huy trưởng",
+        "phone": "024.3382.4350",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.5032,
+          21.1378
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_SONTAY",
+        "code": "BCH-ST",
+        "name": "Ban Chỉ huy Quân sự Thị xã Sơn Tây",
+        "shortName": "Ban CHQS TX. Sơn Tây",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Thị xã Sơn Tây",
+        "ward": "Lê Lợi",
+        "address": "Số 2 đường Phó Đức Chính, P. Lê Lợi, TX. Sơn Tây, Hà Nội",
+        "x_vn2000": 552249.33,
+        "y_vn2000": 2337481.21,
+        "commander": "Thượng tá Nguyễn Văn Quyết - Chỉ huy trưởng",
+        "phone": "024.3383.2215",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự trung tâm huấn luyện phía Tây",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.851,
+          21.2825
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_SOCSON",
+        "code": "BCH-SS",
+        "name": "Ban Chỉ huy Quân sự Huyện Sóc Sơn",
+        "shortName": "Ban CHQS H. Sóc Sơn",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Sóc Sơn",
+        "ward": "Thị trấn Sóc Sơn",
+        "address": "Khu phố 1, Thị trấn Sóc Sơn, Huyện Sóc Sơn, Hà Nội",
+        "x_vn2000": 588278.34,
+        "y_vn2000": 2353651.18,
+        "commander": "Thượng tá Nguyễn Văn Minh - Chỉ huy trưởng",
+        "phone": "024.3885.1220",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Cơ quan quân sự địa phương vành đai phía Bắc",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.845,
+          21.142
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_DONGANH",
+        "code": "BCH-DA",
+        "name": "Ban Chỉ huy Quân sự Huyện Đông Anh",
+        "shortName": "Ban CHQS H. Đông Anh",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Đông Anh",
+        "ward": "Thị trấn Đông Anh",
+        "address": "Tổ 2, Thị trấn Đông Anh, Huyện Đông Anh, Hà Nội",
+        "x_vn2000": 587738.89,
+        "y_vn2000": 2338096.67,
+        "commander": "Thượng tá Đinh Văn Nam - Chỉ huy trưởng",
+        "phone": "024.3883.2109",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.378,
+          21.155
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_BAVI",
+        "code": "BCH-BV",
+        "name": "Ban Chỉ huy Quân sự Huyện Ba Vì",
+        "shortName": "Ban CHQS H. Ba Vì",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Ba Vì",
+        "ward": "Thị trấn Tây Đằng",
+        "address": "Thị trấn Tây Đằng, Huyện Ba Vì, Hà Nội",
+        "x_vn2000": 539244.6,
+        "y_vn2000": 2339348.79,
+        "commander": "Thượng tá Nguyễn Hữu Bình - Chỉ huy trưởng",
+        "phone": "024.3386.3012",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 3 (Thường xuyên)",
+        "personnelScale": "Cơ quan quân sự địa phương vùng bán sơn địa",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.938,
+          21.025
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_GIALAM",
+        "code": "BCH-GL",
+        "name": "Ban Chỉ huy Quân sự Huyện Gia Lâm",
+        "shortName": "Ban CHQS H. Gia Lâm",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Gia Lâm",
+        "ward": "Trâu Quỳ",
+        "address": "Số 2 đường Cổ Bi, Thị trấn Trâu Quỳ, Huyện Gia Lâm, Hà Nội",
+        "x_vn2000": 597472.24,
+        "y_vn2000": 2325200.73,
+        "commander": "Thượng tá Nguyễn Đức Thăng - Chỉ huy trưởng",
+        "phone": "024.3876.5412",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương cửa ngõ phía Đông",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.842,
+          20.9415
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_THANHTRI",
+        "code": "BCH-TT",
+        "name": "Ban Chỉ huy Quân sự Huyện Thanh Trì",
+        "shortName": "Ban CHQS H. Thanh Trì",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Thanh Trì",
+        "ward": "Văn Điển",
+        "address": "Số 387 đường Ngọc Hồi, Thị trấn Văn Điển, Huyện Thanh Trì, Hà Nội",
+        "x_vn2000": 587544.47,
+        "y_vn2000": 2315903.23,
+        "commander": "Thượng tá Hoàng Mạnh Hùng - Chỉ huy trưởng",
+        "phone": "024.3861.4110",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.672,
+          20.884
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_CHUONGMY",
+        "code": "BCH-CM",
+        "name": "Ban Chỉ huy Quân sự Huyện Chương Mỹ",
+        "shortName": "Ban CHQS H. Chương Mỹ",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Chương Mỹ",
+        "ward": "Chúc Sơn",
+        "address": "Thị trấn Chúc Sơn, Huyện Chương Mỹ, Hà Nội",
+        "x_vn2000": 569895.18,
+        "y_vn2000": 2309455.81,
+        "commander": "Thượng tá Vũ Văn Hải - Chỉ huy trưởng",
+        "phone": "024.3386.6041",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.5345,
+          21.0125
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_THACHTHAT",
+        "code": "BCH-TT2",
+        "name": "Ban Chỉ huy Quân sự Huyện Thạch Thất",
+        "shortName": "Ban CHQS H. Thạch Thất",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Thạch Thất",
+        "ward": "Liên Quan",
+        "address": "Thị trấn Liên Quan, Huyện Thạch Thất, Hà Nội",
+        "x_vn2000": 555545.93,
+        "y_vn2000": 2323623.95,
+        "commander": "Thượng tá Đỗ Hữu Đảm - Chỉ huy trưởng",
+        "phone": "024.3384.2230",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.624,
+          20.963
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_QUOCOAI",
+        "code": "BCH-QO",
+        "name": "Ban Chỉ huy Quân sự Huyện Quốc Oai",
+        "shortName": "Ban CHQS H. Quốc Oai",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Quốc Oai",
+        "ward": "Thị trấn Quốc Oai",
+        "address": "Thị trấn Quốc Oai, Huyện Quốc Oai, Hà Nội",
+        "x_vn2000": 564868.51,
+        "y_vn2000": 2318179.14,
+        "commander": "Thượng tá Nguyễn Khắc Lưu - Chỉ huy trưởng",
+        "phone": "024.3384.3120",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 3 (Thường xuyên)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.712,
+          21.023
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_HOAIDUC",
+        "code": "BCH-HD2",
+        "name": "Ban Chỉ huy Quân sự Huyện Hoài Đức",
+        "shortName": "Ban CHQS H. Hoài Đức",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Hoài Đức",
+        "ward": "Trạm Trôi",
+        "address": "Thị trấn Trạm Trôi, Huyện Hoài Đức, Hà Nội",
+        "x_vn2000": 573987.4,
+        "y_vn2000": 2324858.04,
+        "commander": "Thượng tá Nguyễn Văn Luận - Chỉ huy trưởng",
+        "phone": "024.3386.1342",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.714,
+          21.182
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_MELINH",
+        "code": "BCH-ML",
+        "name": "Ban Chỉ huy Quân sự Huyện Mê Linh",
+        "shortName": "Ban CHQS H. Mê Linh",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Mê Linh",
+        "ward": "Đại Thịnh",
+        "address": "Xã Đại Thịnh, Huyện Mê Linh, Hà Nội",
+        "x_vn2000": 574116.27,
+        "y_vn2000": 2342457.16,
+        "commander": "Thượng tá Lưu Anh Tú - Chỉ huy trưởng",
+        "phone": "024.3816.2045",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1977
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.674,
+          21.092
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_DANPHUONG",
+        "code": "BCH-DP",
+        "name": "Ban Chỉ huy Quân sự Huyện Đan Phượng",
+        "shortName": "Ban CHQS H. Đan Phượng",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Đan Phượng",
+        "ward": "Thị trấn Phùng",
+        "address": "Thị trấn Phùng, Huyện Đan Phượng, Hà Nội",
+        "x_vn2000": 570006.21,
+        "y_vn2000": 2332477.77,
+        "commander": "Thượng tá Nguyễn Hữu Nam - Chỉ huy trưởng",
+        "phone": "024.3388.5112",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 3 (Thường xuyên)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.862,
+          20.852
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_THUONGTIN",
+        "code": "BCH-TT3",
+        "name": "Ban Chỉ huy Quân sự Huyện Thường Tín",
+        "shortName": "Ban CHQS H. Thường Tín",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Thường Tín",
+        "ward": "Thị trấn Thường Tín",
+        "address": "Thị trấn Thường Tín, Huyện Thường Tín, Hà Nội",
+        "x_vn2000": 589677.19,
+        "y_vn2000": 2306008.35,
+        "commander": "Thượng tá Nguyễn Đức Toàn - Chỉ huy trưởng",
+        "phone": "024.3385.3115",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.724,
+          20.665
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_MYDUC",
+        "code": "BCH-MD",
+        "name": "Ban Chỉ huy Quân sự Huyện Mỹ Đức",
+        "shortName": "Ban CHQS H. Mỹ Đức",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Mỹ Đức",
+        "ward": "Đại Nghĩa",
+        "address": "Thị trấn Đại Nghĩa, Huyện Mỹ Đức, Hà Nội",
+        "x_vn2000": 575412.59,
+        "y_vn2000": 2285241.15,
+        "commander": "Thượng tá Trần Văn Kiên - Chỉ huy trưởng",
+        "phone": "024.3384.7118",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 3 (Thường xuyên)",
+        "personnelScale": "Cơ quan quân sự địa phương miền đồi núi phía Nam",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.905,
+          20.735
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_PHUXUYEN",
+        "code": "BCH-PX",
+        "name": "Ban Chỉ huy Quân sự Huyện Phú Xuyên",
+        "shortName": "Ban CHQS H. Phú Xuyên",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Phú Xuyên",
+        "ward": "Thị trấn Phú Xuyên",
+        "address": "Thị trấn Phú Xuyên, Huyện Phú Xuyên, Hà Nội",
+        "x_vn2000": 594223.54,
+        "y_vn2000": 2293083.29,
+        "commander": "Thượng tá Nguyễn Văn Bình - Chỉ huy trưởng",
+        "phone": "024.3385.4210",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 3 (Thường xuyên)",
+        "personnelScale": "Cơ quan quân sự địa phương cực Nam",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.782,
+          20.732
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_UNGHOA",
+        "code": "BCH-UH",
+        "name": "Ban Chỉ huy Quân sự Huyện Ứng Hòa",
+        "shortName": "Ban CHQS H. Ứng Hòa",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Ứng Hòa",
+        "ward": "Vân Đình",
+        "address": "Thị trấn Vân Đình, Huyện Ứng Hòa, Hà Nội",
+        "x_vn2000": 581418.43,
+        "y_vn2000": 2292684.5,
+        "commander": "Thượng tá Lê Bá Trường - Chỉ huy trưởng",
+        "phone": "024.3388.2155",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 3 (Thường xuyên)",
+        "personnelScale": "Cơ quan quân sự địa phương vùng chiêm trũng",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.783,
+          20.872
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_THANHOAI",
+        "code": "BCH-TO",
+        "name": "Ban Chỉ huy Quân sự Huyện Thanh Oai",
+        "shortName": "Ban CHQS H. Thanh Oai",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Huyện Thanh Oai",
+        "ward": "Kim Bài",
+        "address": "Thị trấn Kim Bài, Huyện Thanh Oai, Hà Nội",
+        "x_vn2000": 581447.34,
+        "y_vn2000": 2308179.92,
+        "commander": "Thượng tá Trần Tuấn Nam - Chỉ huy trưởng",
+        "phone": "024.3387.3204",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 3 (Thường xuyên)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.812,
+          21.069
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_TAYHO",
+        "code": "BCH-TH",
+        "name": "Ban Chỉ huy Quân sự Quận Tây Hồ",
+        "shortName": "Ban CHQS Q. Tây Hồ",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Quận Tây Hồ",
+        "ward": "Xuân La",
+        "address": "Số 657 đường Lạc Long Quân, P. Xuân La, Q. Tây Hồ, Hà Nội",
+        "x_vn2000": 584353.46,
+        "y_vn2000": 2329998.98,
+        "commander": "Thượng tá Nguyễn Văn Tuấn - Chỉ huy trưởng",
+        "phone": "024.3753.2201",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 1 (Cao nhất)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1995
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.848,
+          20.968
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_HOANGMAI",
+        "code": "BCH-HM",
+        "name": "Ban Chỉ huy Quân sự Quận Hoàng Mai",
+        "shortName": "Ban CHQS Q. Hoàng Mai",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Quận Hoàng Mai",
+        "ward": "Hoàng Liệt",
+        "address": "Số 1 phố Bùi Huy Bích, P. Hoàng Liệt, Q. Hoàng Mai, Hà Nội",
+        "x_vn2000": 588152.81,
+        "y_vn2000": 2318839.57,
+        "commander": "Thượng tá Lưu Danh Tuấn - Chỉ huy trưởng",
+        "phone": "024.3642.1520",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 2003
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.898,
+          21.045
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_LONGBIEN",
+        "code": "BCH-LB",
+        "name": "Ban Chỉ huy Quân sự Quận Long Biên",
+        "shortName": "Ban CHQS Q. Long Biên",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Quận Long Biên",
+        "ward": "Việt Hưng",
+        "address": "Số 1 phố Vạn Hạnh, P. Việt Hưng, Q. Long Biên, Hà Nội",
+        "x_vn2000": 593302.93,
+        "y_vn2000": 2327390.5,
+        "commander": "Thượng tá Nguyễn Minh Thuận - Chỉ huy trưởng",
+        "phone": "024.3877.2910",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 2003
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.8115,
+          20.993
+        ]
+      },
+      "properties": {
+        "id": "DV_CHQS_THANHXUAN",
+        "code": "BCH-TX",
+        "name": "Ban Chỉ huy Quân sự Quận Thanh Xuân",
+        "shortName": "Ban CHQS Q. Thanh Xuân",
+        "unitType": "Ban Chỉ huy Quân sự",
+        "branch": "Lục quân",
+        "parentUnit": "Bộ Tư lệnh Thủ đô Hà Nội",
+        "district": "Quận Thanh Xuân",
+        "ward": "Hạ Đình",
+        "address": "Số 166 phố Khương Đình, P. Hạ Đình, Q. Thanh Xuân, Hà Nội",
+        "x_vn2000": 584344.27,
+        "y_vn2000": 2321586.92,
+        "commander": "Thượng tá Nguyễn Văn Tuấn - Chỉ huy trưởng",
+        "phone": "024.3858.3308",
+        "securityLevel": "Mật",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Cơ quan quân sự địa phương",
+        "establishedYear": 1996
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.867,
+          21.0585
+        ]
+      },
+      "properties": {
+        "id": "DV_HV_HAUCAN",
+        "code": "HV-HC",
+        "name": "Học viện Hậu cần",
+        "shortName": "HV Hậu cần",
+        "unitType": "Học viện - Nhà trường",
+        "branch": "Tổng cục Hậu cần - Kỹ thuật",
+        "parentUnit": "Bộ Quốc phòng",
+        "district": "Quận Long Biên",
+        "ward": "Ngọc Thụy",
+        "address": "Phường Ngọc Thụy, Q. Long Biên, Hà Nội",
+        "x_vn2000": 590073.69,
+        "y_vn2000": 2328866.91,
+        "commander": "Trung tướng Phan Tùng Sơn - Giám đốc",
+        "phone": "069.578.115",
+        "securityLevel": "Mật",
+        "readinessStatus": "Huấn luyện - Đào tạo",
+        "personnelScale": "Đào tạo sĩ quan hậu cần, tài chính quân đội",
+        "establishedYear": 1951
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.811,
+          21.042
+        ]
+      },
+      "properties": {
+        "id": "DV_BV_354",
+        "code": "BV-354",
+        "name": "Bệnh viện Quân y 354",
+        "shortName": "Bệnh viện 354",
+        "unitType": "Bệnh viện Quân y",
+        "branch": "Quân y",
+        "parentUnit": "Tổng cục Hậu cần - Kỹ thuật",
+        "district": "Quận Ba Đình",
+        "ward": "Vĩnh Phúc",
+        "address": "Số 120 đường Đốc Ngữ, P. Vĩnh Phúc, Q. Ba Đình, Hà Nội",
+        "x_vn2000": 584264.77,
+        "y_vn2000": 2327010.04,
+        "commander": "Đại tá TTƯT Chu Dũng Thắng - Giám đốc",
+        "phone": "024.3762.2595",
+        "securityLevel": "Nội bộ",
+        "readinessStatus": "Cấp 2 (Tăng cường)",
+        "personnelScale": "Bệnh viện quân y đa khoa tuyến 1 (~500 giường)",
+        "establishedYear": 1949
+      }
+    }
+  ]
+}

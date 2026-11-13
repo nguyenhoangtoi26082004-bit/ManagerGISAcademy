@@ -1,0 +1,30 @@
+name: managergisacademy
+
+services:
+  postgis:
+    image: postgis/postgis:15-3.4
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${PG_ADMIN_PASSWORD:?Hay dat PG_ADMIN_PASSWORD trong .env}
+      POSTGRES_DB: hanoi_military_gis
+      APP_DB_USER: managergis_app
+      APP_DB_PASSWORD: ${PG_APP_PASSWORD:?Hay dat PG_APP_PASSWORD trong .env}
+    ports:
+      - "127.0.0.1:5434:5432"
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+      # Gắn từng file, không che thư mục init mặc định của ảnh PostGIS.
+      - ./init/20_01_CreateTables.sql:/docker-entrypoint-initdb.d/20_01_CreateTables.sql:ro
+      - ./init/21_02_CreateIndexes.sql:/docker-entrypoint-initdb.d/21_02_CreateIndexes.sql:ro
+      - ./init/22_03_SpatialFunctions.sql:/docker-entrypoint-initdb.d/22_03_SpatialFunctions.sql:ro
+      - ./init/30_create_app_role.sh:/docker-entrypoint-initdb.d/30_create_app_role.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d hanoi_military_gis"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+volumes:
+  postgis_data:

@@ -1,0 +1,29 @@
+# ---- Visual Studio / .NET build ----
+bin/
+obj/
+.vs/
+packages/
+*.user
+*.suo
+*.cache
+TestResults/
+
+# ---- Web prototype ----
+node_modules/
+dist/
+
+# ---- Bi mat: KHONG BAO GIO commit ----
+.env
+*.pgpass
+pgpass.conf
+appsettings.Local.json
+*.pfx
+*.key
+
+# ---- Noi bo / sao luu ca nhan ----
+_QUAN_LY_PHAT_TRIEN/
+*.log
+
+# ---- Raster qua lon cho GitHub (> 100 MB) ----
+*_2M_*.tif
+*.tif.aux.xml

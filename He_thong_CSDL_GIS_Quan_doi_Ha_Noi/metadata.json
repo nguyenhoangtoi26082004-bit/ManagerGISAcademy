@@ -1,0 +1,6 @@
+{
+  "name": "Hệ thống CSDL GIS Quản lý Đơn vị Quân đội Hà Nội",
+  "description": "Hệ thống cơ sở dữ liệu GIS tra cứu thông tin, quản lý dữ liệu không gian, phân tích và thống kê các đơn vị quân đội trên địa bàn thành phố Hà Nội.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,177 @@
+/**
+* Generates ready-to-run PostGIS SQL script (DDL + Spatial Indexes + DML Inserts)
+* Standard EPSG:32648 (WGS 84 / UTM Zone 48N - Hanoi projection)
+*/
+export function generatePostgisSQL(units) {
+	let sql = `-- ====================================================================
+-- HỆ THỐNG CƠ SỞ DỮ LIỆU GIS QUẢN LÝ ĐƠN VỊ QUÂN ĐỘI TRÊN ĐỊA BÀN HÀ NỘI
+-- Hệ tọa độ: VN-2000 / UTM Zone 48N (SRID: 32648) & WGS-84 (SRID: 4326)
+-- Khởi tạo trên PostgreSQL 15+ / PostGIS 3.3+
+-- Sinh tự động bởi Hệ thống CSDL GIS Quân sự Hà Nội
+-- ====================================================================
+
+-- 1. Bật phần mở rộng PostGIS
+CREATE EXTENSION IF NOT EXISTS postgis;
+CREATE EXTENSION IF NOT EXISTS postgis_topology;
+
+-- 2. Xóa bảng cũ nếu tồn tại
+DROP TABLE IF EXISTS don_vi_quan_doi CASCADE;
+
+-- 3. Tạo cấu trúc bảng lưu trữ dữ liệu không gian
+CREATE TABLE don_vi_quan_doi (
+    id VARCHAR(32) PRIMARY KEY,
+    ma_don_vi VARCHAR(32) NOT NULL UNIQUE,
+    ten_don_vi VARCHAR(255) NOT NULL,
+    ten_viet_tat VARCHAR(100),
+    loai_don_vi VARCHAR(100) NOT NULL,
+    quan_binh_chung VARCHAR(100) NOT NULL,
+    don_vi_cap_tren VARCHAR(255) NOT NULL,
+    quan_huyen VARCHAR(100) NOT NULL,
+    phuong_xa VARCHAR(100),
+    dia_chi TEXT NOT NULL,
+    vi_do DOUBLE PRECISION NOT NULL,       -- WGS84 Latitude
+    kinh_do DOUBLE PRECISION NOT NULL,     -- WGS84 Longitude
+    x_vn2000 DOUBLE PRECISION NOT NULL,    -- EPSG:32648 Easting (m)
+    y_vn2000 DOUBLE PRECISION NOT NULL,    -- EPSG:32648 Northing (m)
+    chi_huy_truong VARCHAR(150),
+    chinh_uy VARCHAR(150),
+    so_dien_thoai VARCHAR(50),
+    do_mat VARCHAR(50) DEFAULT 'Mật',
+    trang_thai_sscd VARCHAR(100) DEFAULT 'Cấp 1 (Cao nhất)',
+    quy_mo_quan_so VARCHAR(255),
+    nhiem_vu_chinh TEXT[],
+    vu_khi_trang_bi TEXT[],
+    nam_thanh_lap INT,
+    dien_tich_m2 DOUBLE PRECISION,
+    ghi_chu TEXT,
+    -- Thuộc tính hình học không gian (Spatial Geometry)
+    geom_4326 geometry(Point, 4326),      -- WGS-84 phục vụ Web GIS
+    geom_32648 geometry(Point, 32648),    -- UTM 48N tính toán cự ly mét chính xác
+    ngay_cap_nhat TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 4. Đánh chỉ mục không gian (Spatial GIST Indexing) giúp truy vấn triệu bản ghi trong mili-giây
+CREATE INDEX idx_don_vi_geom_4326 ON don_vi_quan_doi USING GIST (geom_4326);
+CREATE INDEX idx_don_vi_geom_32648 ON don_vi_quan_doi USING GIST (geom_32648);
+CREATE INDEX idx_don_vi_quan_huyen ON don_vi_quan_doi(quan_huyen);
+CREATE INDEX idx_don_vi_binh_chung ON don_vi_quan_doi(quan_binh_chung);
+
+-- 5. Nạp dữ liệu các đơn vị quân đội trên địa bàn Hà Nội
+`;
+	units.forEach((u) => {
+		const missionsArray = `ARRAY[${u.mainMissions.map((m) => `'${m.replace(/'/g, "''")}'`).join(", ")}]`;
+		const equipsArray = `ARRAY[${u.equipmentHighlights.map((e) => `'${e.replace(/'/g, "''")}'`).join(", ")}]`;
+		sql += `INSERT INTO don_vi_quan_doi (
+    id, ma_don_vi, ten_don_vi, ten_viet_tat, loai_don_vi, quan_binh_chung,
+    don_vi_cap_tren, quan_huyen, phuong_xa, dia_chi, vi_do, kinh_do,
+    x_vn2000, y_vn2000, chi_huy_truong, chinh_uy, so_dien_thoai,
+    do_mat, trang_thai_sscd, quy_mo_quan_so, nhiem_vu_chinh, vu_khi_trang_bi,
+    nam_thanh_lap, dien_tich_m2, ghi_chu, geom_4326, geom_32648
+) VALUES (
+    '${u.id}',
+    '${u.code}',
+    '${u.name.replace(/'/g, "''")}',
+    '${u.shortName.replace(/'/g, "''")}',
+    '${u.unitType}',
+    '${u.branch}',
+    '${u.parentUnit.replace(/'/g, "''")}',
+    '${u.district}',
+    '${u.ward}',
+    '${u.address.replace(/'/g, "''")}',
+    ${u.latitude},
+    ${u.longitude},
+    ${u.x_vn2000},
+    ${u.y_vn2000},
+    '${(u.commander || "").replace(/'/g, "''")}',
+    '${(u.politicalCommissar || "").replace(/'/g, "''")}',
+    '${u.phone}',
+    '${u.securityLevel}',
+    '${u.readinessStatus}',
+    '${u.personnelScale}',
+    ${missionsArray},
+    ${equipsArray},
+    ${u.establishedYear},
+    ${u.areaSquareMeters || "NULL"},
+    '${(u.notes || "").replace(/'/g, "''")}',
+    ST_SetSRID(ST_MakePoint(${u.longitude}, ${u.latitude}), 4326),
+    ST_SetSRID(ST_MakePoint(${u.x_vn2000}, ${u.y_vn2000}), 32648)
+);
+`;
+	});
+	sql += `
+-- ====================================================================
+-- MẪU CÁC CÂU TRUY VẤN KHÔNG GIAN (POSTGIS SPATIAL QUERIES DEMO)
+-- ====================================================================
+
+-- 1. Truy vấn đơn vị nằm trong bán kính 10 km (10.000m) quanh Sở Chỉ huy Bộ Quốc phòng:
+-- SELECT ma_don_vi, ten_don_vi, quan_binh_chung,
+--        ROUND(ST_Distance(geom_32648, (SELECT geom_32648 FROM don_vi_quan_doi WHERE ma_don_vi = 'BQP-HQ'))::numeric, 2) AS khoang_cach_met
+-- FROM don_vi_quan_doi
+-- WHERE ST_DWithin(geom_32648, (SELECT geom_32648 FROM don_vi_quan_doi WHERE ma_don_vi = 'BQP-HQ'), 10000)
+-- ORDER BY khoang_cach_met ASC;
+
+-- 2. Đếm số lượng đơn vị quân đội theo từng quận/huyện:
+-- SELECT quan_huyen, COUNT(*) AS so_luong_don_vi
+-- FROM don_vi_quan_doi
+-- GROUP BY quan_huyen
+-- ORDER BY so_luong_don_vi DESC;
+
+-- 3. Tạo vùng đệm bảo vệ (Buffer Zone 5km) quanh Học viện Kỹ thuật Quân sự:
+-- SELECT ST_AsGeoJSON(ST_Transform(ST_Buffer(geom_32648, 5000), 4326)) AS vung_dem_geojson
+-- FROM don_vi_quan_doi
+-- WHERE ma_don_vi = 'HV-KTQS';
+`;
+	return sql;
+}
+/**
+* Export units to CSV file format
+*/
+export function unitsToCSV(units) {
+	const headers = [
+		"Mã Đơn Vị",
+		"Tên Đơn Vị",
+		"Tên Viết Tắt",
+		"Cấp Đơn Vị",
+		"Quân Binh Chủng",
+		"Trực Thuộc",
+		"Quận/Huyện",
+		"Phường/Xã",
+		"Địa Chỉ",
+		"Vĩ Độ (Lat WGS84)",
+		"Kinh Độ (Lng WGS84)",
+		"Tọa Độ X (VN2000 m)",
+		"Tọa Độ Y (VN2000 m)",
+		"Chỉ Huy Trưởng",
+		"Chính Ủy",
+		"Điện Thoại Trực Ban",
+		"Cấp Độ Mật",
+		"Trạng Thái SSCĐ",
+		"Quy Mô Quân Số",
+		"Năm Thành Lập"
+	];
+	const rows = units.map((u) => [
+		`"${u.code}"`,
+		`"${u.name}"`,
+		`"${u.shortName}"`,
+		`"${u.unitType}"`,
+		`"${u.branch}"`,
+		`"${u.parentUnit}"`,
+		`"${u.district}"`,
+		`"${u.ward}"`,
+		`"${u.address.replace(/"/g, "\"\"")}"`,
+		u.latitude,
+		u.longitude,
+		u.x_vn2000,
+		u.y_vn2000,
+		`"${u.commander}"`,
+		`"${u.politicalCommissar || ""}"`,
+		`"${u.phone}"`,
+		`"${u.securityLevel}"`,
+		`"${u.readinessStatus}"`,
+		`"${u.personnelScale}"`,
+		u.establishedYear
+	]);
+	return [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
+}
+
+//# sourceMappingURL=data:application/json;base64,eyJtYXBwaW5ncyI6Ijs7OztBQU1BLE9BQU8sU0FBUyxtQkFBbUIsT0FBK0I7Q0FDaEUsSUFBSSxNQUFNOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0NBd0RWLE1BQU0sU0FBUyxNQUFNO0VBQ25CLE1BQU0sZ0JBQWdCLFNBQVMsRUFBRSxhQUFhLEtBQUssTUFBTSxJQUFJLEVBQUUsUUFBUSxNQUFNLElBQUksRUFBRSxFQUFFLENBQUMsQ0FBQyxLQUFLLElBQUksRUFBRTtFQUNsRyxNQUFNLGNBQWMsU0FBUyxFQUFFLG9CQUFvQixLQUFLLE1BQU0sSUFBSSxFQUFFLFFBQVEsTUFBTSxJQUFJLEVBQUUsRUFBRSxDQUFDLENBQUMsS0FBSyxJQUFJLEVBQUU7RUFFdkcsT0FBTzs7Ozs7OztPQU9KLEVBQUUsR0FBRztPQUNMLEVBQUUsS0FBSztPQUNQLEVBQUUsS0FBSyxRQUFRLE1BQU0sSUFBSSxFQUFFO09BQzNCLEVBQUUsVUFBVSxRQUFRLE1BQU0sSUFBSSxFQUFFO09BQ2hDLEVBQUUsU0FBUztPQUNYLEVBQUUsT0FBTztPQUNULEVBQUUsV0FBVyxRQUFRLE1BQU0sSUFBSSxFQUFFO09BQ2pDLEVBQUUsU0FBUztPQUNYLEVBQUUsS0FBSztPQUNQLEVBQUUsUUFBUSxRQUFRLE1BQU0sSUFBSSxFQUFFO01BQy9CLEVBQUUsU0FBUztNQUNYLEVBQUUsVUFBVTtNQUNaLEVBQUUsU0FBUztNQUNYLEVBQUUsU0FBUztRQUNULEVBQUUsYUFBYSxHQUFFLENBQUUsUUFBUSxNQUFNLElBQUksRUFBRTtRQUN2QyxFQUFFLHNCQUFzQixHQUFFLENBQUUsUUFBUSxNQUFNLElBQUksRUFBRTtPQUNqRCxFQUFFLE1BQU07T0FDUixFQUFFLGNBQWM7T0FDaEIsRUFBRSxnQkFBZ0I7T0FDbEIsRUFBRSxlQUFlO01BQ2xCLGNBQWM7TUFDZCxZQUFZO01BQ1osRUFBRSxnQkFBZ0I7TUFDbEIsRUFBRSxvQkFBb0IsT0FBTztRQUMzQixFQUFFLFNBQVMsR0FBRSxDQUFFLFFBQVEsTUFBTSxJQUFJLEVBQUU7OEJBQ2IsRUFBRSxVQUFVLElBQUksRUFBRSxTQUFTOzhCQUMzQixFQUFFLFNBQVMsSUFBSSxFQUFFLFNBQVM7OztDQUd0RCxDQUFDO0NBRUQsT0FBTzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Q0F3QlAsT0FBTztBQUNUOzs7O0FBS0EsT0FBTyxTQUFTLFdBQVcsT0FBK0I7Q0FDeEQsTUFBTSxVQUFVO0VBQ2Q7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtDQUNGO0NBRUEsTUFBTSxPQUFPLE1BQU0sS0FBSyxNQUFNO0VBQzVCLElBQUksRUFBRSxLQUFLO0VBQ1gsSUFBSSxFQUFFLEtBQUs7RUFDWCxJQUFJLEVBQUUsVUFBVTtFQUNoQixJQUFJLEVBQUUsU0FBUztFQUNmLElBQUksRUFBRSxPQUFPO0VBQ2IsSUFBSSxFQUFFLFdBQVc7RUFDakIsSUFBSSxFQUFFLFNBQVM7RUFDZixJQUFJLEVBQUUsS0FBSztFQUNYLElBQUksRUFBRSxRQUFRLFFBQVEsTUFBTSxNQUFJLEVBQUU7RUFDbEMsRUFBRTtFQUNGLEVBQUU7RUFDRixFQUFFO0VBQ0YsRUFBRTtFQUNGLElBQUksRUFBRSxVQUFVO0VBQ2hCLElBQUksRUFBRSxzQkFBc0IsR0FBRztFQUMvQixJQUFJLEVBQUUsTUFBTTtFQUNaLElBQUksRUFBRSxjQUFjO0VBQ3BCLElBQUksRUFBRSxnQkFBZ0I7RUFDdEIsSUFBSSxFQUFFLGVBQWU7RUFDckIsRUFBRTtDQUNKLENBQUM7Q0FFRCxPQUFPLENBQUMsUUFBUSxLQUFLLEdBQUcsR0FBRyxHQUFHLEtBQUssS0FBSyxNQUFNLEVBQUUsS0FBSyxHQUFHLENBQUMsQ0FBQyxDQUFDLENBQUMsS0FBSyxJQUFJO0FBQ3ZFIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbInBvc3RnaXNFeHBvcnQudHMiXSwidmVyc2lvbiI6Mywic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTWlsaXRhcnlVbml0IH0gZnJvbSAnLi4vdHlwZXMvZ2lzJztcblxuLyoqXG4gKiBHZW5lcmF0ZXMgcmVhZHktdG8tcnVuIFBvc3RHSVMgU1FMIHNjcmlwdCAoRERMICsgU3BhdGlhbCBJbmRleGVzICsgRE1MIEluc2VydHMpXG4gKiBTdGFuZGFyZCBFUFNHOjMyNjQ4IChXR1MgODQgLyBVVE0gWm9uZSA0OE4gLSBIYW5vaSBwcm9qZWN0aW9uKVxuICovXG5leHBvcnQgZnVuY3Rpb24gZ2VuZXJhdGVQb3N0Z2lzU1FMKHVuaXRzOiBNaWxpdGFyeVVuaXRbXSk6IHN0cmluZyB7XG4gIGxldCBzcWwgPSBgLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1cbi0tIEjhu4YgVEjhu5BORyBDxqAgU+G7niBE4buuIExJ4buGVSBHSVMgUVXhuqJOIEzDnSDEkMagTiBW4buKIFFVw4JOIMSQ4buYSSBUUsOKTiDEkOG7ikEgQsOATiBIw4AgTuG7mElcbi0tIEjhu4cgdOG7jWEgxJHhu5k6IFZOLTIwMDAgLyBVVE0gWm9uZSA0OE4gKFNSSUQ6IDMyNjQ4KSAmIFdHUy04NCAoU1JJRDogNDMyNilcbi0tIEto4bufaSB04bqhbyB0csOqbiBQb3N0Z3JlU1FMIDE1KyAvIFBvc3RHSVMgMy4zK1xuLS0gU2luaCB04buxIMSR4buZbmcgYuG7n2kgSOG7hyB0aOG7kW5nIENTREwgR0lTIFF1w6JuIHPhu7EgSMOgIE7hu5lpXG4tLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuXG4tLSAxLiBC4bqtdCBwaOG6p24gbeG7nyBy4buZbmcgUG9zdEdJU1xuQ1JFQVRFIEVYVEVOU0lPTiBJRiBOT1QgRVhJU1RTIHBvc3RnaXM7XG5DUkVBVEUgRVhURU5TSU9OIElGIE5PVCBFWElTVFMgcG9zdGdpc190b3BvbG9neTtcblxuLS0gMi4gWMOzYSBi4bqjbmcgY8WpIG7hur91IHThu5NuIHThuqFpXG5EUk9QIFRBQkxFIElGIEVYSVNUUyBkb25fdmlfcXVhbl9kb2kgQ0FTQ0FERTtcblxuLS0gMy4gVOG6oW8gY+G6pXUgdHLDumMgYuG6o25nIGzGsHUgdHLhu68gZOG7ryBsaeG7h3Uga2jDtG5nIGdpYW5cbkNSRUFURSBUQUJMRSBkb25fdmlfcXVhbl9kb2kgKFxuICAgIGlkIFZBUkNIQVIoMzIpIFBSSU1BUlkgS0VZLFxuICAgIG1hX2Rvbl92aSBWQVJDSEFSKDMyKSBOT1QgTlVMTCBVTklRVUUsXG4gICAgdGVuX2Rvbl92aSBWQVJDSEFSKDI1NSkgTk9UIE5VTEwsXG4gICAgdGVuX3ZpZXRfdGF0IFZBUkNIQVIoMTAwKSxcbiAgICBsb2FpX2Rvbl92aSBWQVJDSEFSKDEwMCkgTk9UIE5VTEwsXG4gICAgcXVhbl9iaW5oX2NodW5nIFZBUkNIQVIoMTAwKSBOT1QgTlVMTCxcbiAgICBkb25fdmlfY2FwX3RyZW4gVkFSQ0hBUigyNTUpIE5PVCBOVUxMLFxuICAgIHF1YW5faHV5ZW4gVkFSQ0hBUigxMDApIE5PVCBOVUxMLFxuICAgIHBodW9uZ194YSBWQVJDSEFSKDEwMCksXG4gICAgZGlhX2NoaSBURVhUIE5PVCBOVUxMLFxuICAgIHZpX2RvIERPVUJMRSBQUkVDSVNJT04gTk9UIE5VTEwsICAgICAgIC0tIFdHUzg0IExhdGl0dWRlXG4gICAga2luaF9kbyBET1VCTEUgUFJFQ0lTSU9OIE5PVCBOVUxMLCAgICAgLS0gV0dTODQgTG9uZ2l0dWRlXG4gICAgeF92bjIwMDAgRE9VQkxFIFBSRUNJU0lPTiBOT1QgTlVMTCwgICAgLS0gRVBTRzozMjY0OCBFYXN0aW5nIChtKVxuICAgIHlfdm4yMDAwIERPVUJMRSBQUkVDSVNJT04gTk9UIE5VTEwsICAgIC0tIEVQU0c6MzI2NDggTm9ydGhpbmcgKG0pXG4gICAgY2hpX2h1eV90cnVvbmcgVkFSQ0hBUigxNTApLFxuICAgIGNoaW5oX3V5IFZBUkNIQVIoMTUwKSxcbiAgICBzb19kaWVuX3Rob2FpIFZBUkNIQVIoNTApLFxuICAgIGRvX21hdCBWQVJDSEFSKDUwKSBERUZBVUxUICdN4bqtdCcsXG4gICAgdHJhbmdfdGhhaV9zc2NkIFZBUkNIQVIoMTAwKSBERUZBVUxUICdD4bqlcCAxIChDYW8gbmjhuqV0KScsXG4gICAgcXV5X21vX3F1YW5fc28gVkFSQ0hBUigyNTUpLFxuICAgIG5oaWVtX3Z1X2NoaW5oIFRFWFRbXSxcbiAgICB2dV9raGlfdHJhbmdfYmkgVEVYVFtdLFxuICAgIG5hbV90aGFuaF9sYXAgSU5ULFxuICAgIGRpZW5fdGljaF9tMiBET1VCTEUgUFJFQ0lTSU9OLFxuICAgIGdoaV9jaHUgVEVYVCxcbiAgICAtLSBUaHXhu5ljIHTDrW5oIGjDrG5oIGjhu41jIGtow7RuZyBnaWFuIChTcGF0aWFsIEdlb21ldHJ5KVxuICAgIGdlb21fNDMyNiBnZW9tZXRyeShQb2ludCwgNDMyNiksICAgICAgLS0gV0dTLTg0IHBo4bulYyB24bulIFdlYiBHSVNcbiAgICBnZW9tXzMyNjQ4IGdlb21ldHJ5KFBvaW50LCAzMjY0OCksICAgIC0tIFVUTSA0OE4gdMOtbmggdG/DoW4gY+G7sSBseSBtw6l0IGNow61uaCB4w6FjXG4gICAgbmdheV9jYXBfbmhhdCBUSU1FU1RBTVAgV0lUSCBUSU1FIFpPTkUgREVGQVVMVCBDVVJSRU5UX1RJTUVTVEFNUFxuKTtcblxuLS0gNC4gxJDDoW5oIGNo4buJIG3hu6VjIGtow7RuZyBnaWFuIChTcGF0aWFsIEdJU1QgSW5kZXhpbmcpIGdpw7pwIHRydXkgduG6pW4gdHJp4buHdSBi4bqjbiBnaGkgdHJvbmcgbWlsaS1nacOieVxuQ1JFQVRFIElOREVYIGlkeF9kb25fdmlfZ2VvbV80MzI2IE9OIGRvbl92aV9xdWFuX2RvaSBVU0lORyBHSVNUIChnZW9tXzQzMjYpO1xuQ1JFQVRFIElOREVYIGlkeF9kb25fdmlfZ2VvbV8zMjY0OCBPTiBkb25fdmlfcXVhbl9kb2kgVVNJTkcgR0lTVCAoZ2VvbV8zMjY0OCk7XG5DUkVBVEUgSU5ERVggaWR4X2Rvbl92aV9xdWFuX2h1eWVuIE9OIGRvbl92aV9xdWFuX2RvaShxdWFuX2h1eWVuKTtcbkNSRUFURSBJTkRFWCBpZHhfZG9uX3ZpX2JpbmhfY2h1bmcgT04gZG9uX3ZpX3F1YW5fZG9pKHF1YW5fYmluaF9jaHVuZyk7XG5cbi0tIDUuIE7huqFwIGThu68gbGnhu4d1IGPDoWMgxJHGoW4gduG7iyBxdcOibiDEkeG7mWkgdHLDqm4gxJHhu4thIGLDoG4gSMOgIE7hu5lpXG5gO1xuXG4gIHVuaXRzLmZvckVhY2goKHUpID0+IHtcbiAgICBjb25zdCBtaXNzaW9uc0FycmF5ID0gYEFSUkFZWyR7dS5tYWluTWlzc2lvbnMubWFwKChtKSA9PiBgJyR7bS5yZXBsYWNlKC8nL2csIFwiJydcIil9J2ApLmpvaW4oJywgJyl9XWA7XG4gICAgY29uc3QgZXF1aXBzQXJyYXkgPSBgQVJSQVlbJHt1LmVxdWlwbWVudEhpZ2hsaWdodHMubWFwKChlKSA9PiBgJyR7ZS5yZXBsYWNlKC8nL2csIFwiJydcIil9J2ApLmpvaW4oJywgJyl9XWA7XG5cbiAgICBzcWwgKz0gYElOU0VSVCBJTlRPIGRvbl92aV9xdWFuX2RvaSAoXG4gICAgaWQsIG1hX2Rvbl92aSwgdGVuX2Rvbl92aSwgdGVuX3ZpZXRfdGF0LCBsb2FpX2Rvbl92aSwgcXVhbl9iaW5oX2NodW5nLFxuICAgIGRvbl92aV9jYXBfdHJlbiwgcXVhbl9odXllbiwgcGh1b25nX3hhLCBkaWFfY2hpLCB2aV9kbywga2luaF9kbyxcbiAgICB4X3ZuMjAwMCwgeV92bjIwMDAsIGNoaV9odXlfdHJ1b25nLCBjaGluaF91eSwgc29fZGllbl90aG9haSxcbiAgICBkb19tYXQsIHRyYW5nX3RoYWlfc3NjZCwgcXV5X21vX3F1YW5fc28sIG5oaWVtX3Z1X2NoaW5oLCB2dV9raGlfdHJhbmdfYmksXG4gICAgbmFtX3RoYW5oX2xhcCwgZGllbl90aWNoX20yLCBnaGlfY2h1LCBnZW9tXzQzMjYsIGdlb21fMzI2NDhcbikgVkFMVUVTIChcbiAgICAnJHt1LmlkfScsXG4gICAgJyR7dS5jb2RlfScsXG4gICAgJyR7dS5uYW1lLnJlcGxhY2UoLycvZywgXCInJ1wiKX0nLFxuICAgICcke3Uuc2hvcnROYW1lLnJlcGxhY2UoLycvZywgXCInJ1wiKX0nLFxuICAgICcke3UudW5pdFR5cGV9JyxcbiAgICAnJHt1LmJyYW5jaH0nLFxuICAgICcke3UucGFyZW50VW5pdC5yZXBsYWNlKC8nL2csIFwiJydcIil9JyxcbiAgICAnJHt1LmRpc3RyaWN0fScsXG4gICAgJyR7dS53YXJkfScsXG4gICAgJyR7dS5hZGRyZXNzLnJlcGxhY2UoLycvZywgXCInJ1wiKX0nLFxuICAgICR7dS5sYXRpdHVkZX0sXG4gICAgJHt1LmxvbmdpdHVkZX0sXG4gICAgJHt1Lnhfdm4yMDAwfSxcbiAgICAke3UueV92bjIwMDB9LFxuICAgICckeyh1LmNvbW1hbmRlciB8fCAnJykucmVwbGFjZSgvJy9nLCBcIicnXCIpfScsXG4gICAgJyR7KHUucG9saXRpY2FsQ29tbWlzc2FyIHx8ICcnKS5yZXBsYWNlKC8nL2csIFwiJydcIil9JyxcbiAgICAnJHt1LnBob25lfScsXG4gICAgJyR7dS5zZWN1cml0eUxldmVsfScsXG4gICAgJyR7dS5yZWFkaW5lc3NTdGF0dXN9JyxcbiAgICAnJHt1LnBlcnNvbm5lbFNjYWxlfScsXG4gICAgJHttaXNzaW9uc0FycmF5fSxcbiAgICAke2VxdWlwc0FycmF5fSxcbiAgICAke3UuZXN0YWJsaXNoZWRZZWFyfSxcbiAgICAke3UuYXJlYVNxdWFyZU1ldGVycyB8fCAnTlVMTCd9LFxuICAgICckeyh1Lm5vdGVzIHx8ICcnKS5yZXBsYWNlKC8nL2csIFwiJydcIil9JyxcbiAgICBTVF9TZXRTUklEKFNUX01ha2VQb2ludCgke3UubG9uZ2l0dWRlfSwgJHt1LmxhdGl0dWRlfSksIDQzMjYpLFxuICAgIFNUX1NldFNSSUQoU1RfTWFrZVBvaW50KCR7dS54X3ZuMjAwMH0sICR7dS55X3ZuMjAwMH0pLCAzMjY0OClcbik7XG5gO1xuICB9KTtcblxuICBzcWwgKz0gYFxuLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1cbi0tIE3huqpVIEPDgUMgQ8OCVSBUUlVZIFbhuqROIEtIw5RORyBHSUFOIChQT1NUR0lTIFNQQVRJQUwgUVVFUklFUyBERU1PKVxuLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1cblxuLS0gMS4gVHJ1eSB24bqlbiDEkcahbiB24buLIG7hurFtIHRyb25nIGLDoW4ga8OtbmggMTAga20gKDEwLjAwMG0pIHF1YW5oIFPhu58gQ2jhu4kgaHV5IELhu5kgUXXhu5FjIHBow7JuZzpcbi0tIFNFTEVDVCBtYV9kb25fdmksIHRlbl9kb25fdmksIHF1YW5fYmluaF9jaHVuZyxcbi0tICAgICAgICBST1VORChTVF9EaXN0YW5jZShnZW9tXzMyNjQ4LCAoU0VMRUNUIGdlb21fMzI2NDggRlJPTSBkb25fdmlfcXVhbl9kb2kgV0hFUkUgbWFfZG9uX3ZpID0gJ0JRUC1IUScpKTo6bnVtZXJpYywgMikgQVMga2hvYW5nX2NhY2hfbWV0XG4tLSBGUk9NIGRvbl92aV9xdWFuX2RvaVxuLS0gV0hFUkUgU1RfRFdpdGhpbihnZW9tXzMyNjQ4LCAoU0VMRUNUIGdlb21fMzI2NDggRlJPTSBkb25fdmlfcXVhbl9kb2kgV0hFUkUgbWFfZG9uX3ZpID0gJ0JRUC1IUScpLCAxMDAwMClcbi0tIE9SREVSIEJZIGtob2FuZ19jYWNoX21ldCBBU0M7XG5cbi0tIDIuIMSQ4bq/bSBz4buRIGzGsOG7o25nIMSRxqFuIHbhu4sgcXXDom4gxJHhu5lpIHRoZW8gdOG7q25nIHF14bqtbi9odXnhu4duOlxuLS0gU0VMRUNUIHF1YW5faHV5ZW4sIENPVU5UKCopIEFTIHNvX2x1b25nX2Rvbl92aVxuLS0gRlJPTSBkb25fdmlfcXVhbl9kb2lcbi0tIEdST1VQIEJZIHF1YW5faHV5ZW5cbi0tIE9SREVSIEJZIHNvX2x1b25nX2Rvbl92aSBERVNDO1xuXG4tLSAzLiBU4bqhbyB2w7luZyDEkeG7h20gYuG6o28gduG7hyAoQnVmZmVyIFpvbmUgNWttKSBxdWFuaCBI4buNYyB2aeG7h24gS+G7uSB0aHXhuq10IFF1w6JuIHPhu7E6XG4tLSBTRUxFQ1QgU1RfQXNHZW9KU09OKFNUX1RyYW5zZm9ybShTVF9CdWZmZXIoZ2VvbV8zMjY0OCwgNTAwMCksIDQzMjYpKSBBUyB2dW5nX2RlbV9nZW9qc29uXG4tLSBGUk9NIGRvbl92aV9xdWFuX2RvaVxuLS0gV0hFUkUgbWFfZG9uX3ZpID0gJ0hWLUtUUVMnO1xuYDtcblxuICByZXR1cm4gc3FsO1xufVxuXG4vKipcbiAqIEV4cG9ydCB1bml0cyB0byBDU1YgZmlsZSBmb3JtYXRcbiAqL1xuZXhwb3J0IGZ1bmN0aW9uIHVuaXRzVG9DU1YodW5pdHM6IE1pbGl0YXJ5VW5pdFtdKTogc3RyaW5nIHtcbiAgY29uc3QgaGVhZGVycyA9IFtcbiAgICAnTcOjIMSQxqFuIFbhu4snLFxuICAgICdUw6puIMSQxqFuIFbhu4snLFxuICAgICdUw6puIFZp4bq/dCBU4bqvdCcsXG4gICAgJ0PhuqVwIMSQxqFuIFbhu4snLFxuICAgICdRdcOibiBCaW5oIENo4bunbmcnLFxuICAgICdUcuG7sWMgVGh14buZYycsXG4gICAgJ1F14bqtbi9IdXnhu4duJyxcbiAgICAnUGjGsOG7nW5nL1jDoycsXG4gICAgJ8SQ4buLYSBDaOG7iScsXG4gICAgJ1bEqSDEkOG7mSAoTGF0IFdHUzg0KScsXG4gICAgJ0tpbmggxJDhu5kgKExuZyBXR1M4NCknLFxuICAgICdU4buNYSDEkOG7mSBYIChWTjIwMDAgbSknLFxuICAgICdU4buNYSDEkOG7mSBZIChWTjIwMDAgbSknLFxuICAgICdDaOG7iSBIdXkgVHLGsOG7n25nJyxcbiAgICAnQ2jDrW5oIOG7pnknLFxuICAgICfEkGnhu4duIFRob+G6oWkgVHLhu7FjIEJhbicsXG4gICAgJ0PhuqVwIMSQ4buZIE3huq10JyxcbiAgICAnVHLhuqFuZyBUaMOhaSBTU0PEkCcsXG4gICAgJ1F1eSBNw7QgUXXDom4gU+G7kScsXG4gICAgJ07Eg20gVGjDoG5oIEzhuq1wJyxcbiAgXTtcblxuICBjb25zdCByb3dzID0gdW5pdHMubWFwKCh1KSA9PiBbXG4gICAgYFwiJHt1LmNvZGV9XCJgLFxuICAgIGBcIiR7dS5uYW1lfVwiYCxcbiAgICBgXCIke3Uuc2hvcnROYW1lfVwiYCxcbiAgICBgXCIke3UudW5pdFR5cGV9XCJgLFxuICAgIGBcIiR7dS5icmFuY2h9XCJgLFxuICAgIGBcIiR7dS5wYXJlbnRVbml0fVwiYCxcbiAgICBgXCIke3UuZGlzdHJpY3R9XCJgLFxuICAgIGBcIiR7dS53YXJkfVwiYCxcbiAgICBgXCIke3UuYWRkcmVzcy5yZXBsYWNlKC9cIi9nLCAnXCJcIicpfVwiYCxcbiAgICB1LmxhdGl0dWRlLFxuICAgIHUubG9uZ2l0dWRlLFxuICAgIHUueF92bjIwMDAsXG4gICAgdS55X3ZuMjAwMCxcbiAgICBgXCIke3UuY29tbWFuZGVyfVwiYCxcbiAgICBgXCIke3UucG9saXRpY2FsQ29tbWlzc2FyIHx8ICcnfVwiYCxcbiAgICBgXCIke3UucGhvbmV9XCJgLFxuICAgIGBcIiR7dS5zZWN1cml0eUxldmVsfVwiYCxcbiAgICBgXCIke3UucmVhZGluZXNzU3RhdHVzfVwiYCxcbiAgICBgXCIke3UucGVyc29ubmVsU2NhbGV9XCJgLFxuICAgIHUuZXN0YWJsaXNoZWRZZWFyLFxuICBdKTtcblxuICByZXR1cm4gW2hlYWRlcnMuam9pbignLCcpLCAuLi5yb3dzLm1hcCgocikgPT4gci5qb2luKCcsJykpXS5qb2luKCdcXG4nKTtcbn1cbiJdfQ==

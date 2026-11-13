@@ -1,0 +1,8 @@
+*.backup binary
+*.tif binary
+*.png binary
+*.jpg binary
+*.ico binary
+*.cs text eol=crlf
+*.sql text
+*.md text
